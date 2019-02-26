@@ -1,0 +1,67 @@
+﻿  CLM.cc
+  FCheck.cc
+  FDet.cc
+c:\users\droma\downloads\facetracker\facetracker\src\lib\fdet.cc(98): warning C4244: '=': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\fdet.cc(99): warning C4244: '=': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+  IO.cc
+  Patch.cc
+c:\users\droma\downloads\facetracker\facetracker\src\lib\patch.cc(90): warning C4244: '=': conversion from 'int' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=float
+          ]
+  PAW.cc
+  PDM.cc
+  Tracker.cc
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(138): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(140): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(141): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(152): warning C4244: '*=': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(153): warning C4244: '*=': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(173): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(172): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(177): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(178): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(181): warning C4244: '*=': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\lib\tracker.cc(182): warning C4244: '*=': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+  Tracker.vcxproj -> C:\Users\droma\Downloads\FaceTracker\FaceTracker\msvc\..\bin\Tracker.lib
