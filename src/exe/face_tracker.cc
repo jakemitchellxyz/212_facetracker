@@ -225,6 +225,9 @@ int main(int argc, const char** argv)
   float inod_threshold = gesture_threshold;
   float inod_direction = 0;
 
+  double calibrated_right_mouth_corner = 0.0;
+  double calibrated_left_mouth_corner = 0.0;
+
   while(1){ 
 			//grab image, resize and flip
 			IplImage* I = cvQueryFrame(camera); if(!I)continue; frame = I;
@@ -325,12 +328,44 @@ int main(int argc, const char** argv)
 			  // SURPRISE ========================================================
 
 			  int i, n = model._shape.rows / 2;
-			  cv::Point p1 = cv::Point(model._shape.at<double>(26, 0), model._shape.at<double>(26+n, 0));
-			  cv::Scalar c = CV_RGB(0, 255, 0);
-				
-			  cv::circle(im, p1, 30, c); //image, center, radius, color
+			  int left_corner = 48;
+			  int right_corner = 54;
 
-			  printf("x: %f y: %f\n", p1.x, p1.y);
+			  double x_right = model._shape.at<double>(right_corner, 0);
+			  double x_left = model._shape.at<double>(left_corner, 0);
+
+			  if (abs(x_right - calibrated_right_mouth_corner) > 150)
+			  {
+				  calibrated_right_mouth_corner = x_right;
+			  }
+			  if (abs(x_left - calibrated_left_mouth_corner) > 150)
+			  {
+				  calibrated_left_mouth_corner = x_left;
+			  }
+
+			  calibrated_left_mouth_corner += 0.05 * (x_left - calibrated_left_mouth_corner);
+			  calibrated_right_mouth_corner += 0.05 * (x_right - calibrated_right_mouth_corner);
+
+			  double real_width = x_right - x_left;
+			  double calibrated_width = calibrated_right_mouth_corner - calibrated_left_mouth_corner;
+
+			  double growth = real_width - calibrated_width;
+
+			  if (growth > 8)
+			  {
+				  printf("\n\n Stop smiling, cutie!\n\n");
+			  }
+			  
+			  cv::Point left_corner_point = cv::Point(model._shape.at<double>(left_corner, 0), model._shape.at<double>(left_corner+n, 0));
+			  cv::Point right_corner_point = cv::Point(model._shape.at<double>(right_corner, 0), model._shape.at<double>(right_corner + n, 0));
+			  
+			  cv::Scalar c = CV_RGB(0, 255, 0);
+			
+			  //cv::line(im, cv::Point(calibrated_left_mouth_corner, 0), cv::Point(calibrated_left_mouth_corner, 10000), c,1);
+			  //cv::line(im, cv::Point(calibrated_right_mouth_corner, 0), cv::Point(calibrated_right_mouth_corner, 10000), c, 1);
+			  //cv::circle(im, left_corner_point, 3, c); //image, center, radius, color
+			  //cv::circle(im, right_corner_point, 3, c); //image, center, radius, color
+
 
 
 			  // =================================================================
