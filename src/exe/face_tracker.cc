@@ -86,7 +86,11 @@ void Draw(cv::Mat &image,cv::Mat &shape,cv::Mat &con,cv::Mat &tri,cv::Mat &visi)
   for(i = 0; i < n; i++){    
     if(visi.at<int>(i,0) == 0)continue;
     p1 = cv::Point(shape.at<double>(i,0),shape.at<double>(i+n,0));
-    c = CV_RGB(255,0,0); cv::circle(image,p1,2,c);
+    c = CV_RGB(255,0,0); 
+	if (i > 16 && i < 27) {
+		c = CV_RGB(0, 255, 0); 
+	}
+	cv::circle(image, p1, 2, c);
   }return;
 }
 //=============================================================================
@@ -193,10 +197,29 @@ int main(int argc, const char** argv)
   double pitch = 0, yaw = 0, roll = 0;
 
   // Main loop
-  bool down = false;
-  float yes_down_detected = 0.0;
-  float yes_timer = 3000;
-  float yes_distance = 0.05;
+  int center_reset = 2000;
+  double center_pitch = 0.0;
+  double center_yaw = 0.0;
+  double center_roll = 0.0;
+
+  float gesture_timer = 3000;
+  float gesture_threshold = 0.2;
+  
+  bool move = false;
+  float yes_gesture_started = 0.0;
+  float yes_threshold = gesture_threshold;
+  float yes_direction = 0.0;
+
+  bool turn = false;
+  float no_gesture_started = 0.0;
+  float no_threshold = gesture_threshold;
+  float no_direction = 0;
+
+  bool tilt = false;
+  float inod_gesture_started = 0.0;
+  float inod_threshold = gesture_threshold;
+  float inod_direction = 0;
+
   while(1){ 
 			//grab image, resize and flip
 			IplImage* I = cvQueryFrame(camera); if(!I)continue; frame = I;
@@ -217,22 +240,82 @@ int main(int argc, const char** argv)
 			  // =================================================================
 			  // =============== Homework: Your code will go here >>
 			  float this_time = getSystemTime();
-			  printf("time: %f, yes_time: %f, Pitch = %0.2f  Yaw = %0.2f  Roll = %0.2f\n",this_time,yes_down_detected,pitch,yaw,roll);
+			  //printf("time: %f, Pitch = %0.2f  Yaw = %0.2f  Roll = %0.2f\n",this_time,pitch,yaw,roll);
+			 
+			  // CENTERING ======================================================
+			  int int_time = static_cast<int>(this_time);
 			  
-			  if (pitch > yes_distance && down == false)
+			  
+			  if ((int_time % center_reset < 50) && !(yes_gesture_started || no_gesture_started || inod_gesture_started))
 			  {
-				  down = true;
-				  yes_down_detected = this_time;
+				  //printf("\n\n %d \n\n", int_time % center_reset);
+				  printf("\n\nReset Center\n\n");
+				  center_pitch = pitch;
+				  center_yaw = yaw;
+				  center_roll = roll;
 			  }
-			  if (down == true && pitch < yes_distance)
+
+			  //if (this_time - yes_gesture_started > gesture_timer)
+			  //{
+				  //yes_gesture_started = 0.0;
+				  //move = false;
+			  //}
+
+			  // YES ========================================================
+			  double adjusted_pitch = center_pitch - pitch;
+			  
+			  if ((abs(adjusted_pitch) > yes_threshold) && (move == false))
 			  {
-				  if (this_time - yes_down_detected < yes_timer)
+				  yes_direction = adjusted_pitch;
+				  move = true;
+				  yes_gesture_started = this_time;
+			  }
+			  if ((move && (abs(adjusted_pitch) < yes_threshold)) && ((adjusted_pitch > 0) != (yes_direction > 0)))
+			  {
+				  if (yes_gesture_started && (this_time - yes_gesture_started < gesture_timer))
 				  {
 					  printf("\n\n one 'yes' detected!!\n\n");
-					  yes_down_detected = 0.0;
+					  yes_gesture_started = 0.0;
 				  }
+				  move = false;
+			  }
 
-				  down = false;
+			  // NO =========================================================
+			  double adjusted_yaw = center_yaw - yaw;
+			  
+			  if ((abs(adjusted_yaw) > no_threshold) && (turn == false))
+			  {
+				  no_direction = adjusted_yaw;
+				  turn = true;
+				  no_gesture_started = this_time;
+			  }
+			  if ((turn && (abs(adjusted_yaw) < no_threshold)) && ((adjusted_yaw > 0) != (no_direction > 0)))
+			  {
+				  if (this_time - no_gesture_started < gesture_timer)
+				  {
+					  printf("\n\n one 'no' detected!!\n\n");
+					  no_gesture_started = 0.0;
+				  }
+				  turn = false;
+			  }
+
+			  // INDIAN NOD =================================================
+			  double adjusted_roll = center_roll - roll;
+			  
+			  if ((abs(adjusted_roll) > inod_threshold) && (tilt == false))
+			  {
+				  inod_direction = adjusted_roll;
+				  tilt = true;
+				  inod_gesture_started = this_time;
+			  }
+			  if ((tilt && (abs(adjusted_roll) < inod_threshold)) && ((adjusted_roll > 0) != (inod_direction > 0)))
+			  {
+				  if (this_time - inod_gesture_started < gesture_timer)
+				  {
+					  printf("\n\n one 'indian nod' detected!!\n\n");
+					  inod_gesture_started = 0.0;
+				  }
+				  tilt = false;
 			  }
 
 			  // =================================================================
