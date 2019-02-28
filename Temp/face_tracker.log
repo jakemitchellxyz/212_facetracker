@@ -1,23 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (..\Temp\) contains files shared from another project (Tracker.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   face_tracker.cc
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(59): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=double
-          ]
-          and
-          [
-              _Tp=int
-          ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(58): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=double
-          ]
-          and
-          [
-              _Tp=int
-          ]
 c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(61): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
@@ -36,7 +18,7 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(60): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(64): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(63): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
               _Tp=double
@@ -45,7 +27,7 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(64): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(63): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(62): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
               _Tp=double
@@ -72,7 +54,7 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(65): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(69): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(68): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
               _Tp=double
@@ -81,7 +63,7 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(69): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(68): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(67): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
               _Tp=double
@@ -108,7 +90,7 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(70): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(80): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(73): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
               _Tp=double
@@ -117,7 +99,7 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(80): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(79): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(72): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
               _Tp=double
@@ -144,7 +126,7 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(81): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(88): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(84): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
           with
           [
               _Tp=double
@@ -153,15 +135,65 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(88): wa
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(164): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(199): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(204): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(83): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+          and
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(90): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+          and
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(173): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(211): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(235): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(277): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(296): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(315): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(359): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+          and
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(360): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+          and
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(364): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(365): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=int
+          ]
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(330): warning C4101: 'i': unreferenced local variable
   Generating code
-  1 of 833 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  1 of 834 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
