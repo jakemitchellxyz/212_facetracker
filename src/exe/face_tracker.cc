@@ -91,8 +91,8 @@ void Draw(cv::Mat &image,cv::Mat &shape,cv::Mat &con,cv::Mat &tri,cv::Mat &visi)
     c = CV_RGB(255,0,0); 
 	
 	// color brows green
-	if (i > 16 && i < 27) {
-	//	c = CV_RGB(0, 255, 0); 
+	if (i == 57) {
+		c = CV_RGB(0, 255, 0); 
 	}
 	
 	cv::circle(image, p1, 2, c);
@@ -249,8 +249,7 @@ int main(int argc, const char** argv)
 			 
 			  // CENTERING ======================================================
 			  int int_time = static_cast<int>(this_time);
-			  
-			  
+			 		  
 			  if ((int_time % center_reset < 50) && !(yes_gesture_started || no_gesture_started || inod_gesture_started))
 			  {
 				  //printf("\n\n %d \n\n", int_time % center_reset);
@@ -259,12 +258,6 @@ int main(int argc, const char** argv)
 				  center_yaw = yaw;
 				  center_roll = roll;
 			  }
-
-			  //if (this_time - yes_gesture_started > gesture_timer)
-			  //{
-				  //yes_gesture_started = 0.0;
-				  //move = false;
-			  //}
 
 			  // YES ========================================================
 			  double adjusted_pitch = center_pitch - pitch;
@@ -322,17 +315,25 @@ int main(int argc, const char** argv)
 				  }
 				  tilt = false;
 			  }
-			  // SURPRISE ========================================================
 
-			  int i, n = model._shape.rows / 2;
-			  cv::Point p1 = cv::Point(model._shape.at<double>(26, 0), model._shape.at<double>(26+n, 0));
+			  // SURPRISE ========================================================
+			  int n = model._shape.rows / 2;
 			  cv::Scalar c = CV_RGB(0, 255, 0);
 				
-			  cv::circle(im, p1, 30, c); //image, center, radius, color
+			  double eye_height = model._shape.at<double>(27 + n, 0);
+			  double avg_brow_height = 0.0;
+			  for (int i = 17; i < 27; i++)
+			  {
+				  avg_brow_height += model._shape.at<double>(i + n, 0);
+			  }
+			  avg_brow_height = avg_brow_height / 10;
+			  
+			  //avg height line
+			  cv::Point brow_center_point = cv::Point(10, avg_brow_height);
+			  cv::line(im, cv::Point(10, avg_brow_height), cv::Point(600, avg_brow_height), c);
 
-			  printf("x: %f y: %f\n", p1.x, p1.y);
-
-
+			  double mouth_open_distance = (model._shape.at<double>(57 + n, 0) - (model._shape.at<double>(51 + n, 0)));
+			  printf("\n%f\n", mouth_open_distance);
 			  // =================================================================
 	  
 			  Draw(im,model._shape,con,tri,model._clm._visi[idx]); 
