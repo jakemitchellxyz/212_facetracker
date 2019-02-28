@@ -208,7 +208,7 @@ int main(int argc, const char** argv)
   double center_roll = 0.0;
 
   float gesture_timer = 3000;
-  float gesture_threshold = 0.15;
+  float gesture_threshold = 0.2;
   
   bool move = false;
   float yes_gesture_started = 0.0;
