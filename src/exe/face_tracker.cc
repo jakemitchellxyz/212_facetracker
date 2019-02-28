@@ -47,7 +47,9 @@
 //=============================================================================
 void Draw(cv::Mat &image,cv::Mat &shape,cv::Mat &con,cv::Mat &tri,cv::Mat &visi)
 {
-  int i,n = shape.rows/2; cv::Point p1,p2; cv::Scalar c;
+  int i,n = shape.rows/2; 
+  cv::Point p1,p2; 
+  cv::Scalar c;
 
   //draw triangulation
   c = CV_RGB(0,0,0);
@@ -87,9 +89,12 @@ void Draw(cv::Mat &image,cv::Mat &shape,cv::Mat &con,cv::Mat &tri,cv::Mat &visi)
     if(visi.at<int>(i,0) == 0)continue;
     p1 = cv::Point(shape.at<double>(i,0),shape.at<double>(i+n,0));
     c = CV_RGB(255,0,0); 
+	
+	// color brows green
 	if (i > 16 && i < 27) {
-		c = CV_RGB(0, 255, 0); 
+	//	c = CV_RGB(0, 255, 0); 
 	}
+	
 	cv::circle(image, p1, 2, c);
   }return;
 }
@@ -317,6 +322,16 @@ int main(int argc, const char** argv)
 				  }
 				  tilt = false;
 			  }
+			  // SURPRISE ========================================================
+
+			  int i, n = model._shape.rows / 2;
+			  cv::Point p1 = cv::Point(model._shape.at<double>(26, 0), model._shape.at<double>(26+n, 0));
+			  cv::Scalar c = CV_RGB(0, 255, 0);
+				
+			  cv::circle(im, p1, 30, c); //image, center, radius, color
+
+			  printf("x: %f y: %f\n", p1.x, p1.y);
+
 
 			  // =================================================================
 	  
