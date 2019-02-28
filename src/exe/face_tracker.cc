@@ -208,7 +208,7 @@ int main(int argc, const char** argv)
   double center_roll = 0.0;
 
   float gesture_timer = 3000;
-  float gesture_threshold = 0.2;
+  float gesture_threshold = 0.15;
   
   bool move = false;
   float yes_gesture_started = 0.0;
@@ -227,6 +227,9 @@ int main(int argc, const char** argv)
 
   double calibrated_right_mouth_corner = 0.0;
   double calibrated_left_mouth_corner = 0.0;
+  double calibrated_top_mouth_inside = 0.0;
+  double calibrated_bottom_mouth_inside = 0.0;
+  double calibrated_eyebrow = 0.0;
 
   while(1){ 
 			//grab image, resize and flip
@@ -255,8 +258,6 @@ int main(int argc, const char** argv)
 			 		  
 			  if ((int_time % center_reset < 50) && !(yes_gesture_started || no_gesture_started || inod_gesture_started))
 			  {
-				  //printf("\n\n %d \n\n", int_time % center_reset);
-				  printf("\n\nReset Center\n\n");
 				  center_pitch = pitch;
 				  center_yaw = yaw;
 				  center_roll = roll;
@@ -275,7 +276,7 @@ int main(int argc, const char** argv)
 			  {
 				  if (yes_gesture_started && (this_time - yes_gesture_started < gesture_timer))
 				  {
-					  printf("\n\n one 'yes' detected!!\n\n");
+					  printf("\n\n Oh, so you agree??\n\n");
 					  yes_gesture_started = 0.0;
 				  }
 				  move = false;
@@ -294,7 +295,7 @@ int main(int argc, const char** argv)
 			  {
 				  if (this_time - no_gesture_started < gesture_timer)
 				  {
-					  printf("\n\n one 'no' detected!!\n\n");
+					  printf("\n\n No, me neither.\n\n");
 					  no_gesture_started = 0.0;
 				  }
 				  turn = false;
@@ -313,13 +314,13 @@ int main(int argc, const char** argv)
 			  {
 				  if (this_time - inod_gesture_started < gesture_timer)
 				  {
-					  printf("\n\n one 'indian nod' detected!!\n\n");
+					  printf("\n\n I guess that's an Indian Nod...\n\n");
 					  inod_gesture_started = 0.0;
 				  }
 				  tilt = false;
 			  }
         
-        // SMILE ======================================================
+		      // SMILE ======================================================
 			  int i, n = model._shape.rows / 2;
 			  int left_corner = 48;
 			  int right_corner = 54;
@@ -349,35 +350,51 @@ int main(int argc, const char** argv)
 				  printf("\n\n Stop smiling, cutie!\n\n");
 			  }
 			  
-			  cv::Point left_corner_point = cv::Point(model._shape.at<double>(left_corner, 0), model._shape.at<double>(left_corner+n, 0));
-			  cv::Point right_corner_point = cv::Point(model._shape.at<double>(right_corner, 0), model._shape.at<double>(right_corner + n, 0));
-			  
 			  cv::Scalar c = CV_RGB(0, 255, 0);
-			
-			  //cv::line(im, cv::Point(calibrated_left_mouth_corner, 0), cv::Point(calibrated_left_mouth_corner, 10000), c,1);
-			  //cv::line(im, cv::Point(calibrated_right_mouth_corner, 0), cv::Point(calibrated_right_mouth_corner, 10000), c, 1);
-			  //cv::circle(im, left_corner_point, 3, c); //image, center, radius, color
-			  //cv::circle(im, right_corner_point, 3, c); //image, center, radius, color
 
 			  // SURPRISE ========================================================
-			  int n = model._shape.rows / 2;
-			  cv::Scalar c = CV_RGB(0, 255, 0);
-				
-			  double eye_height = model._shape.at<double>(27 + n, 0);
 			  double avg_brow_height = 0.0;
 			  for (int i = 17; i < 27; i++)
 			  {
 				  avg_brow_height += model._shape.at<double>(i + n, 0);
 			  }
-			  avg_brow_height = avg_brow_height / 10;
+			  avg_brow_height = avg_brow_height / 10.0;
 			  
-			  //avg height line
-			  cv::Point brow_center_point = cv::Point(10, avg_brow_height);
-			  cv::line(im, cv::Point(10, avg_brow_height), cv::Point(600, avg_brow_height), c);
+			  double y_top = model._shape.at<double>(61 + n, 0);
+			  double y_bottom = model._shape.at<double>(64 + n, 0);
 
-			  double mouth_open_distance = (model._shape.at<double>(57 + n, 0) - (model._shape.at<double>(51 + n, 0)));
-			  printf("\n%f\n", mouth_open_distance);
-			  // =================================================================
+			  if (abs(y_top - calibrated_top_mouth_inside) > 150)
+			  {
+				  calibrated_top_mouth_inside = y_top;
+			  }
+			  if (abs(y_bottom - calibrated_bottom_mouth_inside) > 150)
+			  {
+				  calibrated_bottom_mouth_inside = y_bottom;
+			  }
+
+			  calibrated_top_mouth_inside += 0.01 * (y_top - calibrated_top_mouth_inside);
+			  calibrated_bottom_mouth_inside += 0.01 * (y_bottom - calibrated_bottom_mouth_inside);
+
+			  double real_height = y_bottom - y_top;
+			  double calibrated_height = calibrated_bottom_mouth_inside - calibrated_top_mouth_inside;
+
+			  double mouth_growth = real_height - calibrated_height;
+
+			  if (abs(avg_brow_height - calibrated_eyebrow) > 150)
+			  {
+				  calibrated_eyebrow = avg_brow_height;
+			  }
+
+			  calibrated_eyebrow += 0.05 * (avg_brow_height - calibrated_eyebrow);
+
+			  double lift = calibrated_eyebrow - avg_brow_height;
+
+			  if (lift > 8 && mouth_growth > 10)
+			  {
+				  printf("\n\n Calm down, you're fine.\n\n");
+			  }
+
+			  // END CUSTOM CODE =================================================================
 	  
 			  Draw(im,model._shape,con,tri,model._clm._visi[idx]); 
 			}else{

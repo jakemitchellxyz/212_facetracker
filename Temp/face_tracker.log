@@ -155,43 +155,15 @@ c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(90): wa
           ]
 c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(173): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(211): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(235): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(238): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
           with
           [
               _Tp=int
           ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(277): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(296): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(315): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(359): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=double
-          ]
-          and
-          [
-              _Tp=int
-          ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(360): warning C4244: 'argument': conversion from '_Tp' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=double
-          ]
-          and
-          [
-              _Tp=int
-          ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(364): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(365): warning C4244: 'argument': conversion from 'double' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=int
-          ]
-c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(330): warning C4101: 'i': unreferenced local variable
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(271): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(290): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(309): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\droma\downloads\facetracker\facetracker\src\exe\face_tracker.cc(324): warning C4101: 'i': unreferenced local variable
   Generating code
   1 of 834 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
